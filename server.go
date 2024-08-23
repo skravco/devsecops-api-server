@@ -9,6 +9,7 @@ import (
 func main() {
 	http.HandleFunc("/success", handleSuccess)
 	http.HandleFunc("/health", handleHealth)
+	http.HandleFunc("/brand-new-endpoint", handleBrandNewEndpoint)
 
 	addr := "localhost:8000"
 	log.Printf("Listening on %s ...", addr)
@@ -25,4 +26,8 @@ func handleSuccess(writer http.ResponseWriter, request *http.Request) {
 
 func handleHealth(writer http.ResponseWriter, request *http.Request) {
 	fmt.Println("health Endpoint Triggered")
+}
+
+func handleBrandNewEndpoint(writer http.ResponseWriter, request *http.Request) {
+	fmt.Println("brand-new Endpoint Triggered")
 }
