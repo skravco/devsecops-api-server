@@ -49,7 +49,7 @@ func handleBrandNewEndpoint(writer http.ResponseWriter, request *http.Request) {
 
 func writeResponse(writer http.ResponseWriter, responseString string) {
 	response := []byte(responseString)
-	fmt.Println(response)
+	//	fmt.Println(response)
 	_, err := writer.Write(response)
 	if err != nil {
 		fmt.Println(err)
