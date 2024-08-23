@@ -21,13 +21,37 @@ func main() {
 }
 
 func handleSuccess(writer http.ResponseWriter, request *http.Request) {
-	fmt.Println("success Endpoint Triggered")
+	// fmt.Println("success Endpoint Triggered")
+	if request.Method != "GET" {
+		http.Error(writer, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
+	}
+
+	writeResponse(writer, "success!")
 }
 
 func handleHealth(writer http.ResponseWriter, request *http.Request) {
-	fmt.Println("health Endpoint Triggered")
+	//fmt.Println("health Endpoint Triggered")
+	if request.Method != "GET" {
+		http.Error(writer, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
+	}
+
+	writeResponse(writer, "ok!")
 }
 
 func handleBrandNewEndpoint(writer http.ResponseWriter, request *http.Request) {
-	fmt.Println("brand-new Endpoint Triggered")
+	//fmt.Println("brand-new Endpoint Triggered")
+	if request.Method != "GET" {
+		http.Error(writer, http.StatusText(http.StatusMethodNotAllowed), http.StatusMethodNotAllowed)
+	}
+
+	writeResponse(writer, "brand-new-endpoint!")
+}
+
+func writeResponse(writer http.ResponseWriter, responseString string) {
+	response := []byte(responseString)
+	fmt.Println(response)
+	_, err := writer.Write(response)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
